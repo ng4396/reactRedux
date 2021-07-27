@@ -102,7 +102,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Company Name</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat name'
+                        placeholder='Enter Company Name'
                         value={companyName}
                         onChangeText={(text) => setCompanyName(text)}
                     />
@@ -111,7 +111,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>EFA</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter EFA Name'
                         value={EfaName}
                         onChangeText={(text) => setEfaName(text)}
                     />
@@ -120,7 +120,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>EFA Value</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter EFA Value'
                         value={efaValue}
                         onChangeText={(text) => setEfaValue(text)}
                     />
@@ -130,7 +130,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Equity</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter Equity Name'
                         value={equity}
                         onChangeText={(text) => setEquity(text)}
                     />
@@ -139,7 +139,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Quantity</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter Quantity'
                         value={quantity}
                         onChangeText={(text) => setQuantity(text)}
                     />
@@ -148,7 +148,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Average Cost</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter Average Cost'
                         value={averageCost}
                         onChangeText={(text) => setAverageCost(text)}
                     />
@@ -166,7 +166,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Market Value</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter Market Value'
                         value={marketValue}
                         onChangeText={(text) => setMarketValue(text)}
                     />
@@ -175,7 +175,7 @@ export const EditDetail = ({ navigation, ...props }) => {
                     <Text>Unrealized P/L</Text>
                     <TextInput
                         style={styles.catNameTextInput}
-                        placeholder='Enter cat breed'
+                        placeholder='Enter Unrealized P/L'
                         value={unrealisedPL}
                         onChangeText={(text) => setUnrealisedPl(text)}
                     />

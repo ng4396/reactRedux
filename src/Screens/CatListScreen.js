@@ -4,34 +4,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CatListArray } from '../components/actions/LoginAction';
 import { Images } from "../../src/Utils/Images";
 
-
+//----- company == cat -----//
 const height = Dimensions.get("window").height;
 const width = Dimensions.get("window").width;
+//----- Progress Bar  -----//
 export const ProgressBarLine = ({ ...props }) => {
     const { progress } = props
     return (
         <View>
-            <View style={{
-                marginTop: 10,
-                width: '90%',
-                borderRadius: 10,
-                alignSelf: 'center',
-                overflow: 'hidden',
-
-            }}>
-                <View style={{
-                    flexDirection: 'row',
-                    height: 4,
-                    backgroundColor: '#00000014',
-
-                }}>
+            <View style={styles.ProgressContainer}>
+            <View style={styles.prog1}>
                     <Animated.View style={[StyleSheet.absoluteFill],
                     {
                         backgroundColor: "green",
-                        borderRadius: 10,
-                        width: progress ? progress.toString() + '%' : 0,
+                        borderRadius:10,
+                        width: progress.toString() + '%',
                     }}
-                    />
+                     />
                 </View>
             </View>
         </View>
@@ -40,10 +29,26 @@ export const ProgressBarLine = ({ ...props }) => {
 };
 
 export const ProgressBarCircle = ({ ...props }) => {
-    const { progress } = props
+    const { progressCircle } = props
     return (
-        <View style={styles.progressCircle}>
-            
+        <View style={styles.progressCircle}>       
+            <Animated.View style={[StyleSheet.absoluteFill], 
+            {
+               marginTop: 10,
+               height: 100,
+               width: 100,
+               justifyContent: 'center',
+               alignItems: 'center',
+               borderRadius: 100 / 2,
+               borderWidth: 15,
+               position:'absolute',
+               borderLeftColor:'#4db8ff',
+               borderRightColor:'transparent',
+               borderBottomColor: 'transparent',
+               borderTopColor:'transparent'
+               
+            }} />
+           
         </View>
     );
 
@@ -57,7 +62,7 @@ export const CatListScreen = ({ navigation }) => {
     const [catMainList, setCatList] = useState([]);
     const [uiRender, setUiRender] = useState(false);
 
-    //----- CatList res Useeffect called -----//
+    //----- CompanyList res Useeffect called -----//
     useEffect(() => {
         if (catListResData != undefined && catListResData.length > 0) {
             setCatList(catListResData)
@@ -97,53 +102,23 @@ export const CatListScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.container}>
                 {HeaderView()}
-                {/* <View>
-                {
-                    catMainList && catMainList.length > 0 ? (
-                        <View>
-                            {catMainList.map((catItem, catIndex) => (
-                                <View key={catIndex} style={styles.ListMainTouchable}>
-                                    <View>
-                                        <View style={styles.nameDescMainView}>
-                                            <View style={styles.nameBreedMainViewe}>
-                                                <Text>{catItem.name}</Text>
-                                                <Text style={styles.breedTextStyle}>{catItem.breed}</Text>
-                                            </View>
-                                            <Text style={styles.descTextStyle}>{catItem.description}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.editDeleteView}>
-                                    <TouchableOpacity onPress={() => navigation.navigate('EditDetail',{editData: catItem, editIndex: catIndex})}>
-                                        <Image source={Images.editIcon} style={styles.editDeleteImageStyle}/>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => deleteItemFunc(catItem)}>
-                                        <Image source={Images.deleteIcon} style={[styles.editDeleteImageStyle,{marginLeft:15}]}/>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            ))}
-                        </View>
-                    ): null
-                }
-            </View> */}
-            
-
-
                 <ScrollView>
-                <View style={styles.mainBox}>
-                <Text style={styles.protfolio}>Portfolio</Text>
-                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                    <ProgressBarCircle progress={80} />
-                    <View style={{alignSelf:'center',justifyContent:'space-between'}}>
-                    <Text style={{color:'#8A8A8A',fontSize:16,padding:10}}>Mutual Funds</Text>
-                    <Text style={{color:'#8A8A8A',fontSize:16,padding:10}}>ETF's</Text>
+                    <View style={styles.mainBox}>
+                        <Text style={styles.protfolio}>Portfolio</Text>
+                        <View style={styles.progressCircleMain}>
+                            <ProgressBarCircle progressCircle={80} />
+                            <View style={styles.ProgressCircleImage}>
+                                <View style={styles.proCirView1}>
+                                    <View style={styles.squareBox1}></View>
+                                    <Text style={styles.boxTxt}>Mutual Funds</Text>
+                                </View>
+                                <View style={styles.proCirView1}>
+                                    <View style={styles.squareBox2}></View>
+                                    <Text style={styles.boxTxt}>ETF's</Text>
+                                </View>
+                            </View>
+                        </View>
                     </View>
-                   
-                    </View>
-
-                   
-                </View>
-
                     {
                         catMainList && catMainList.length > 0 ? (
                             <View>
@@ -219,7 +194,6 @@ export const CatListScreen = ({ navigation }) => {
                         ) : null
                     }
                 </ScrollView>
-
             </View>
         </SafeAreaView>
     )
@@ -297,7 +271,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     mainBox: {
-        width: 400,
+        width: '95%',
         margin: 5,
         padding: 10,
         backgroundColor: '#fff',
@@ -412,19 +386,79 @@ const styles = StyleSheet.create({
         // marginTop:h(5),
         justifyContent: 'center'
     },
-    progressCircle:{
-        marginTop:10,
-        height:200,
-        width:200,
-        justifyContent:'center',
-        borderColor:'red',
-        alignItems:'center',
-        borderRadius:200/2,
-        borderWidth:15
+    progressCircle: {
+        marginTop: 10,
+        height: 100,
+        width: 100,
+        justifyContent: 'center',
+        borderColor: '#608000',
+        alignItems: 'center',
+        borderRadius: 100 / 2,
+        borderWidth: 15
     },
-    protfolio:{
-        fontSize:20
+    progressCircleFilled:{
+        marginTop: 10,
+        height: 100,
+        width: 100,
+        justifyContent: 'center',
+        borderColor: 'red',
+        alignItems: 'center',
+        borderRadius: 100 / 2,
+        borderWidth: 15,
+        position:'absolute'
+    },
+    protfolio: {
+        fontSize: 20
+    },
+    ProgressCircleImage: {
+        alignSelf: 'center',
+        justifyContent: 'space-between'
+    },
+    progressCircleMain: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    proCirView1: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+
+    },
+    squareBox1: {
+        backgroundColor: '#4db8ff',
+        height: 15,
+        width: 15,
+        alignSelf: 'center',
+    },
+    squareBox2: {
+        backgroundColor: '#608000',
+        height: 15,
+        width: 15,
+        alignSelf: 'center',
+    },
+    boxTxt: {
+        color: '#8A8A8A',
+        fontSize: 16,
+        padding: 10
+    },
+    ProgressContainer: {
+        marginTop: 10,
+        width: '90%',
+        borderRadius: 10,
+        alignSelf: 'center',
+        overflow: 'hidden',
+
+    },
+    prog1: {
+        flexDirection: 'row',
+        height: 4,
+        backgroundColor: '#00000014',
+
+    },
+    AnimatedProg: {
+        backgroundColor: "green",
+        borderRadius: 10,
     }
+
 
 
 

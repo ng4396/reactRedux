@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard, SafeAreaView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView, Keyboard, SafeAreaView, ScrollView } from 'react-native';
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import { AddCatData, CatListArray } from '../components/actions/LoginAction';
 
@@ -99,16 +99,18 @@ export const AddCatDetail = ({ navigation, ...props }) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#fff' }}
+        behavior={Platform.OS === 'ios' ? "padding" : "padding"}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -200}>
             <SafeAreaView style={styles.container}>
                 <View style={styles.container}>
                     {HeaderView()}
-                    <View>
+                    <ScrollView>
                         <View style={styles.catNameMainView}>
                             <Text>Company Name</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat name'
+                                placeholder='Enter Company Name'
                                 value={companyName}
                                 onChangeText={(text) => setCompanyName(text)}
                             />
@@ -117,7 +119,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>EFA</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter EFA Name'
                                 value={EfaName}
                                 onChangeText={(text) => setEfaName(text)}
                             />
@@ -126,7 +128,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>EFA Value</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter EFA Value'
                                 value={efaValue}
                                 onChangeText={(text) => setEfaValue(text)}
                             />
@@ -136,7 +138,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Equity</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Equity Name'
                                 value={equity}
                                 onChangeText={(text) => setEquity(text)}
                             />
@@ -145,7 +147,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Quantity</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Quantity'
                                 value={quantity}
                                 onChangeText={(text) => setQuantity(text)}
                             />
@@ -154,7 +156,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Average Cost</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Average Cost'
                                 value={averageCost}
                                 onChangeText={(text) => setAverageCost(text)}
                             />
@@ -163,7 +165,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Investment Amount</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Investment Amount'
                                 value={investmentAmount}
                                 onChangeText={(text) => setInvestmentAmount(text)}
                             />
@@ -172,7 +174,7 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Market Value</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Market Value'
                                 value={marketValue}
                                 onChangeText={(text) => setMarketValue(text)}
                             />
@@ -181,15 +183,15 @@ export const AddCatDetail = ({ navigation, ...props }) => {
                             <Text>Unrealized P/L</Text>
                             <TextInput
                                 style={styles.catNameTextInput}
-                                placeholder='Enter cat breed'
+                                placeholder='Enter Unrealized P/L'
                                 value={unrealisedPL}
                                 onChangeText={(text) => setUnrealisedPl(text)}
                             />
                         </View>
-                    </View>
+                    </ScrollView>
                 </View>
             </SafeAreaView>
-        </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
     )
 }
 
